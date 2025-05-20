@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useState } from 'react';
 
 type UploadImageProps = {
@@ -26,7 +28,6 @@ const UploadImage = ({
     imgUrl,
 }: UploadImageProps) => {
     const [uploadedFiles, setUploadedFiles] = useState<(string | File)[]>(imgUrl || []);
-    console.log('uploadimage', imgUrl);
     const ref = useRef<HTMLInputElement | null>(null);
 
     const handleuploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +66,7 @@ const UploadImage = ({
                     multiple={multiple}
                     ref={ref}
                 />
-                <div className='absolute flex gap-x-[9px] bottom-[4rem] z-10'>
+                <div className='absolute flex gap-x-[9px] bottom-16 z-10'>
                     {showPreview &&
                         uploadedFiles?.map((file, index) => (
                             <div
@@ -104,13 +105,15 @@ const UploadImage = ({
                         }}
                     >
                         <button
-                            className='rounded-full overflow-hidden aspect-[1/1] w-[3.6rem] cursor-pointer'
+                            className='rounded-full overflow-hidden aspect-square w-[3.6rem] cursor-pointer'
                             type='button'
                         >
                             <img
                                 src='/icon/icon-gallery.svg'
                                 alt='gallery'
                                 className='w-full h-full object-cover p-[.6rem]'
+                                width={36}
+                                height={36}
                             />
                         </button>
                     </label>

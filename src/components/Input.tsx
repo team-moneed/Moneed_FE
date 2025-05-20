@@ -1,3 +1,5 @@
+'use client';
+
 type InputType = HTMLInputElement['type'];
 
 interface InputProps {

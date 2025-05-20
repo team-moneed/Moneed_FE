@@ -1,8 +1,8 @@
 type IconType = {
     className?: string;
     iconUrl: string;
-    width: number;
-    height: number;
+    width?: number;
+    height?: number;
     onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 

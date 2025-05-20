@@ -29,4 +29,14 @@ export default {
         },
     },
     plugins: [scrollbarHide, aspectRatio, scrollbar],
+    corePlugins: {
+        preflight: true,
+    },
+    layer: {
+        base: {
+            button: {
+                cursor: 'pointer',
+            },
+        },
+    },
 };

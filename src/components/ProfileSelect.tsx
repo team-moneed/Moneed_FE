@@ -13,13 +13,13 @@ const ProfileSelect = ({ onSelect }: ProfileSelectProps) => {
     ];
 
     return (
-        <div className='grid grid-cols-4 gap-[1rem] mt-[2rem]'>
+        <div className='grid grid-cols-4 gap-4 mt-8'>
             {images.map((image, index) => (
                 <img
                     key={index}
                     src={image}
                     alt={`Profile ${index + 1}`}
-                    className='aspect-[1/1] w-[4.8rem] object-cover cursor-pointer'
+                    className='aspect-square w-[4.8rem] object-cover cursor-pointer'
                     onClick={() => onSelect(image)}
                 />
             ))}

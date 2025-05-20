@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
 type EditImageProps = {
@@ -83,7 +85,7 @@ const EditImage = ({
                     multiple={multiple}
                     ref={ref}
                 />
-                <div className='absolute flex gap-x-[9px] bottom-[4rem] z-10'>
+                <div className='absolute flex gap-x-[9px] bottom-16 z-10'>
                     {showPreview &&
                         uploadedFiles?.map((file, index) => (
                             <div
@@ -122,7 +124,7 @@ const EditImage = ({
                         }}
                     >
                         <button
-                            className='rounded-full overflow-hidden aspect-[1/1] w-[3.6rem] cursor-pointer'
+                            className='rounded-full overflow-hidden aspect-square w-[3.6rem] cursor-pointer'
                             type='submit'
                         >
                             <img

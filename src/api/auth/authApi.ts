@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = import.meta.env.VITE_BASE_URL;
+const baseUrl = process.env.BASE_URL;
 
 interface KakaoTokenResponse {
     access_token: string;

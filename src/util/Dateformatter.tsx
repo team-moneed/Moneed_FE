@@ -71,7 +71,7 @@ const DateFormatter = ({ createdAt }: DateFormatterPropsType) => {
     const formattedDate = useMemo(() => changeFormatDate(createdAt), [createdAt]);
 
     return (
-        <span className='text-[1.4rem] font-normal leading-[142%] text-[var(--moneed-gray-7)]'>{formattedDate}</span>
+        <span className='text-[1.4rem] font-normal leading-[142%] text-(--moneed-gray-7)'>{formattedDate}</span>
     );
 };
 

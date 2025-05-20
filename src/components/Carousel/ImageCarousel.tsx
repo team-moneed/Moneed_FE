@@ -15,7 +15,7 @@ const ImageCarousel: React.FC<PropType> = props => {
             <div className=' w-full overflow-hidden' ref={emblaRef}>
                 <div className='flex'>
                     {slides.map((imgUrl, index) => (
-                        <div className='w-full h-64 flex-shrink-0' key={index}>
+                        <div className='w-full h-64 shrink-0' key={index}>
                             <img
                                 src={imgUrl}
                                 alt={`Slide ${index + 1}`}
