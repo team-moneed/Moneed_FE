@@ -6,7 +6,7 @@ import UploadImage from '@/components/UploadImage';
 import useSnackBarStore from '@/store/useSnackBarStore';
 import { useForm } from 'react-hook-form';
 import { useKeyboardOffset } from '@/hooks/useKeyboardOffset';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { redirect, useRouter, useSearchParams } from 'next/navigation';
 
 type FieldData = {
     title: string;
@@ -30,6 +30,7 @@ const WritePost = () => {
     const title = watch('title', '');
 
     const { showSnackBar } = useSnackBarStore();
+    useSnackBarStore();
 
     const handleFileUpload = (formData: FormData) => {
         setFormImg(formData);
@@ -71,7 +72,7 @@ const WritePost = () => {
         }
     };
 
-    const onSubmit = (data: FieldData) => {
+    const onSubmit = async (data: FieldData) => {
         const formData = { ...data, stocktype };
 
         if (!stocktype) {
@@ -89,8 +90,14 @@ const WritePost = () => {
             return;
         }
 
+        const res = await fetch('/api/posts', {
+            method: 'POST',
+            body: JSON.stringify(formData),
+        });
+
         showSnackBar('게시글이 작성되었습니다.', 'action', 'bottom', '');
-        console.log('게시글작성', formData);
+
+        if (res.redirected) redirect(res.url);
     };
 
     return (

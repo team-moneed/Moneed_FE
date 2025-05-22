@@ -9,7 +9,7 @@ const compat = new FlatCompat({
     baseDirectory: __dirname,
 });
 
-const eslintConfig = [
+export default [
     ...compat.extends('next/core-web-vitals', 'next/typescript'),
     ...compat.config({
         rules: {
@@ -17,6 +17,9 @@ const eslintConfig = [
             '@next/next/no-img-element': 'off',
         },
     }),
+    {
+        ignores: ['src/generated'],
+    },
     // ...compat.plugins('react-refresh'),
     // ...compat.config({
     //     rules: {
@@ -24,5 +27,3 @@ const eslintConfig = [
     //     },
     // }),
 ];
-
-export default eslintConfig;

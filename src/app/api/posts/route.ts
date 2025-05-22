@@ -1,4 +1,7 @@
+import { PrismaClient } from '@/generated/prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
+
+const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
     const stocktype = req.nextUrl.searchParams.get('stocktype');
@@ -69,4 +72,25 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(posts.filter(post => post.stocktype === stocktype));
     }
     return NextResponse.json(posts);
+}
+
+// 게시글 작성
+export async function POST(req: NextRequest) {
+    const { title, content, stocktype } = await req.json();
+    try {
+        const post = await prisma.post.create({
+            data: {
+                author_id: 1, // 임시 작성자 id
+                title,
+                content,
+                stock_type: stocktype,
+            },
+        });
+        console.log('게시글 작성', post);
+    } catch (error) {
+        console.error('게시글 작성 오류', error);
+        return NextResponse.json({ error: '게시글 작성 오류' }, { status: 500 });
+    }
+    const url = new URL(`/community/${stocktype}`, req.url);
+    return NextResponse.redirect(url);
 }
