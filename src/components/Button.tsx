@@ -30,7 +30,7 @@ const Button = ({ type = 'button', theme, textcolor, children, className, onClic
             type={type}
             onClick={onClick}
             className={
-                `bg-[var(${buttonTheme[theme]})] text-[var(${textTheme[textcolor]})] rounded-[1.6rem] ${disabled ? 'pointer-events-none cursor-not-allowed bg-(--moneed-gray-4) text-(--moneed-gray-6)' : ''} ` +
+                `bg-(${buttonTheme[theme]}) text-(${textTheme[textcolor]}) rounded-[1.6rem] ${disabled ? 'pointer-events-none cursor-not-allowed bg-(--moneed-gray-4) text-(--moneed-gray-6)' : ''} ` +
                 className
             }
         >

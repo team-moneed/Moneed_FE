@@ -38,22 +38,22 @@ export default function SearchStockType() {
     });
     return (
         <>
-            <div className='px-[2rem] max-w-[128rem] mx-auto'>
+            <div className='px-8 max-w-512 mx-auto'>
                 <div className='relative'>
                     <img
                         src='/icon/icon-search.svg'
                         alt='search icon'
-                        className='absolute left-[1rem] top-[50%] transform -translate-y-[50%] w-[1.6rem] h-[1.6rem]'
+                        className='absolute left-4 top-[50%] transform -translate-y-[50%] w-[1.6rem] h-[1.6rem]'
                     />
                     <input
                         type='text'
                         placeholder='게시판 종목을 검색 해 주세요.'
                         value={searchStockType}
                         onChange={e => setsearchStockType(e.target.value)}
-                        className='pl-[3rem] pr-[1rem] py-[.8rem] w-full border border-solid border-[var(--moneed-gray-5)] bg-[var(--moneed-black-3)] rounded-[1.6rem] text-[1.6rem] text-[var(--moneed-gray-7)]'
+                        className='pl-12 pr-4 py-[.8rem] w-full border border-solid border-(--moneed-gray-5) bg-(--moneed-black-3) rounded-[1.6rem] text-[1.6rem] text-(--moneed-gray-7)'
                     />
                 </div>
-                <div className='text-[1.6rem] font-[600] leading-[140%] pb-[1rem] pt-[2.2rem]'>
+                <div className='text-[1.6rem] font-semibold leading-[140%] pb-4 pt-[2.2rem]'>
                     나의 선호 종목 [10]개
                 </div>
                 <div className='px-[2.4rem] py-[.8rem]'>

@@ -1,12 +1,20 @@
 @import 'tailwindcss';
+@source 'tailwind-scrollbar';
+@source 'tailwind-scrollbar-hide';
+@source '@tailwindcss/aspect-ratio';
 
-@layer utilities {
-    .mask-right {
-        -webkit-mask-image: linear-gradient(to left, transparent, #000 4.8rem);
-        mask-image: linear-gradient(to left, transparent, #000 4.8rem);
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
-    }
+@theme {
+    --shadow-custom: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    --bg-mask-gradient-right: linear-gradient(to left, transparent, #000 4.8rem);
+    --snackbar-top: slideDown 0.5s ease-in-out;
+    --snackbar-bottom: slideUp 0.5s ease-in-out;
+}
+
+@utility mask-right {
+    -webkit-mask-image: linear-gradient(to left, transparent, #000 4.8rem);
+    mask-image: linear-gradient(to left, transparent, #000 4.8rem);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
 }
 
 #root {
@@ -35,6 +43,28 @@
     }
     to {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
