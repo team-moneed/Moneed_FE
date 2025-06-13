@@ -1,5 +1,11 @@
 export type Video = {
-    videoUrl: string;
-    title: string;
-    createdAt: string;
+    id: {
+        videoId: string;
+    };
+    snippet: {
+        title: string;
+        publishedAt: string;
+        description: string;
+        tags: string[];
+    };
 };
