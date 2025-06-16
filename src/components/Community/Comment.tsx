@@ -68,14 +68,14 @@ const Comment = ({ userName, content, createdAt, onEditComment }: CommentType) =
     return (
         <>
             <div className='relative flex items-start gap-[.6rem] w-full'>
-                <i className='absolute block w-[.1rem] top-0 bottom-0 left-[1.6rem] bg-(--moneed-gray-5)'></i>
+                <i className='absolute block w-[.1rem] top-0 bottom-0 left-[1.6rem] bg-moneed-gray-5'></i>
                 <div className='relative rounded-full overflow-hidden aspect-square w-[3.2rem] shrink-0'>
                     <img src='/temp/sample3.png' alt='' className='w-full h-full object-cover' />
                 </div>
                 <div className='flex-1'>
-                    <span className='text-[1.4rem] font-bold leading-[140%] text-(--moneed-black)'>{userName}</span>
-                    <i className='w-[.2rem] h-[.2rem] mx-[.8rem] mb-[.2rem] rounded-full bg-(--moneed-gray-5) inline-block '></i>
-                    <span className='text-[1.4rem] font-normal leading-[142%] text-(--moneed-gray-7)'>{createdAt}</span>
+                    <span className='text-[1.4rem] font-bold leading-[140%] text-moneed-black'>{userName}</span>
+                    <i className='w-[.2rem] h-[.2rem] mx-[.8rem] mb-[.2rem] rounded-full bg-moneed-gray-5 inline-block '></i>
+                    <span className='text-[1.4rem] font-normal leading-[142%] text-moneed-gray-7'>{createdAt}</span>
                     <div className='text-[1.4rem] font-normal leading-[140%]'>{content}</div>
                 </div>
                 <div className='relative'>

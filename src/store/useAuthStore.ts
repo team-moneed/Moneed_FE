@@ -1,40 +1,19 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 
-interface AuthState {
-    userId: number | null;
-    isLoggedIn: boolean;
+interface IAuthState {
+    accessToken: string | null;
 }
 
-interface AuthActions {
-    setUserId: (userId: number) => void;
-    setLoginState: (isLoggedIn: boolean) => void;
-    login: ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) => void;
-    logout: () => void;
+interface IAuthActions {
+    setAccessToken: (accessToken: string) => void;
 }
 
-const useAuthStore = create<AuthState & AuthActions>()(
-    persist(
-        set => ({
-            userId: null,
-            isLoggedIn: false,
-            setUserId: (userId: number) => set({ userId }),
-            setLoginState: (isLoggedIn: boolean) => set({ isLoggedIn }),
-            login: ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) => {
-                set({ isLoggedIn: true });
-                localStorage.setItem('access_token', accessToken);
-                localStorage.setItem('refresh_token', refreshToken);
-            },
-            logout: () => {
-                set({ userId: null, isLoggedIn: false });
-                localStorage.removeItem('access_token');
-                localStorage.removeItem('refresh_token');
-            },
-        }),
-        {
-            name: 'auth-storage',
-        },
-    ),
-);
+const useAuthStore = create<IAuthState & IAuthActions>()(set => ({
+    // TODO: UserInfo 저장 필요 (로그인 시 저장, 로그아웃 시 삭제) (UserStore와 연동이 가능한가?)
+    accessToken: null,
+    setAccessToken: (accessToken: string) => {
+        set({ accessToken });
+    },
+}));
 
 export default useAuthStore;

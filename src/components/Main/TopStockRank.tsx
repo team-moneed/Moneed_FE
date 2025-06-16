@@ -67,7 +67,7 @@ const TopStockRank = () => {
                         onClick={() => movecommunity(selectedStockRank)}
                         className='flex items-center gap-[.8rem] py-0 lg:pl-0'
                     >
-                        <span className='text-[1.4rem] text-(--moneed-gray-8) font-semibold leading-[135%]'>
+                        <span className='text-[1.4rem] text-moneed-gray-8 font-semibold leading-[135%]'>
                             해당 게시판 더보기
                         </span>
                         <img src='/icon/icon-arrow-right.svg' alt='' />

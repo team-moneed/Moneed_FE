@@ -48,7 +48,7 @@ const VideoCarousel = (props: PropType) => {
             <NextButton
                 onClick={onNextButtonClick}
                 disabled={nextBtnDisabled}
-                className='hidden lg:absolute lg:block top-1/2 right-2 transform -translate-y-1/2 z-10 p-[1.2rem] rounded-4xl bg-(--moneed-gray-5)'
+                className='hidden lg:absolute lg:block top-1/2 right-2 transform -translate-y-1/2 z-10 p-[1.2rem] rounded-4xl bg-moneed-gray-5'
             />
         </div>
     );

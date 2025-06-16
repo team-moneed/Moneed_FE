@@ -1,6 +1,6 @@
 'use client';
 
-type Props = {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     theme: 'primary' | 'secondary' | 'ghost' | 'brand';
     children: React.ReactNode;
     textcolor: 'primary' | 'secondary' | 'ghost' | 'brand';
@@ -8,21 +8,21 @@ type Props = {
     onClick?: () => void;
     disabled?: boolean;
     type?: 'button' | 'submit' | 'reset';
-};
+}
 
 const Button = ({ type = 'button', theme, textcolor, children, className, onClick, disabled = false }: Props) => {
     const buttonTheme = {
-        primary: '--moneed-black',
-        secondary: '--moneed-white',
-        ghost: '--moneed-white',
-        brand: '--moneed-brand-color',
+        primary: 'moneed-black',
+        secondary: 'moneed-white',
+        ghost: 'moneed-white',
+        brand: 'moneed-brand',
     };
 
     const textTheme = {
-        primary: '--moneed-white',
-        secondary: '--moneed-gray-9',
-        ghost: '--moneed-gray-7',
-        brand: '--moneed-black',
+        primary: 'moneed-white',
+        secondary: 'moneed-gray-9',
+        ghost: 'moneed-gray-7',
+        brand: 'moneed-black',
     };
 
     return (
@@ -30,7 +30,7 @@ const Button = ({ type = 'button', theme, textcolor, children, className, onClic
             type={type}
             onClick={onClick}
             className={
-                `bg-(${buttonTheme[theme]}) text-(${textTheme[textcolor]}) rounded-[1.6rem] ${disabled ? 'pointer-events-none cursor-not-allowed bg-(--moneed-gray-4) text-(--moneed-gray-6)' : ''} ` +
+                `bg-${buttonTheme[theme]} text-${textTheme[textcolor]} rounded-[1.6rem] ${disabled ? 'pointer-events-none cursor-not-allowed bg-moneed-gray-4 text-moneed-gray-6' : ''} ` +
                 className
             }
         >

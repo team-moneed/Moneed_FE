@@ -3,8 +3,8 @@ import { AxiosInstance, AxiosError, InternalAxiosRequestConfig, AxiosResponse } 
 
 const Instance = (): AxiosInstance => {
     const instance: AxiosInstance = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
         withCredentials: true,
+        baseURL: process.env.NEXT_PUBLIC_MONEED_BASE_URL,
         headers: {
             'Content-type': 'application/json',
         },
@@ -12,19 +12,10 @@ const Instance = (): AxiosInstance => {
 
     instance.interceptors.request.use(
         (config: InternalAxiosRequestConfig) => {
-            if (!config.headers) {
-                return config;
-            }
-
-            const authToken = localStorage.getItem('token');
-
-            if (authToken) {
-                config.headers.Authorization = `Bearer ${authToken}`;
-            }
             return config;
         },
         (error: AxiosError) => {
-            console.log(error);
+            console.error(error.response?.data);
             return Promise.reject(error);
         },
     );
@@ -33,10 +24,12 @@ const Instance = (): AxiosInstance => {
         (response: AxiosResponse) => {
             return response;
         },
-        (error: AxiosError) => {
-            // if () {
-
-            // }
+        async (error: AxiosError) => {
+            if (error.response?.status === 401) {
+                window.location.href = '/onboarding?reason=expired_session';
+                console.error(error.response?.data);
+                return Promise.reject(error);
+            }
             return Promise.reject(error);
         },
     );

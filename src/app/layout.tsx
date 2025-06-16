@@ -1,7 +1,6 @@
 import { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import '@/app/globals.css';
-import '@/app/ui.base.css';
 import { ModalProvider } from '@/context/ModalContext';
 import Header from '@/components/Layout/Header';
 import MobileNav from '@/components/Layout/MobileNav';
@@ -33,16 +32,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     ></iframe>
                 </noscript>
 
-                <div id='root'>
+                <div id='root' className='mx-auto min-h-screen max-w-7xl flex flex-col'>
                     <QueryClientProvider>
                         <ModalProvider>
-                            <div className='flex-1'>
-                                <div className='hidden lg:block sticky top-0 z-10 bg-white'>
-                                    <Header />
-                                </div>
-                                {children}
-                                <Footer />
-                            </div>
+                            <Header />
+                            <main className='flex-1 pb-[8rem]'>{children}</main>
+                            <Footer />
                             <MobileNav />
                             <SnackBar />
                         </ModalProvider>

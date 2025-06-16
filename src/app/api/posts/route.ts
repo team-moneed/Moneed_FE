@@ -1,7 +1,5 @@
-import { PrismaClient } from '@/generated/prisma/client';
+import prisma from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
-
-const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
     const stocktype = req.nextUrl.searchParams.get('stocktype');
@@ -80,10 +78,10 @@ export async function POST(req: NextRequest) {
     try {
         const post = await prisma.post.create({
             data: {
-                author_id: 1, // 임시 작성자 id
+                authorId: 1, // 임시 작성자 id
                 title,
                 content,
-                stock_type: stocktype,
+                stockType: stocktype,
             },
         });
         console.log('게시글 작성', post);

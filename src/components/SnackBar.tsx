@@ -1,8 +1,8 @@
 'use client';
 
+import useSnackBarStore from '@/store/useSnackBarStore';
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import useSnackBarStore from '@/store/useSnackBarStore';
 
 export default function SnackBar() {
     const { message, icon, position, type, isVisible, hideSnackBar } = useSnackBarStore();
@@ -27,14 +27,14 @@ export default function SnackBar() {
     let textColor = '';
 
     if (type === 'normal') {
-        backgroundColor = 'bg-(--moneed-gray-7)';
-        textColor = 'text-(--moneed-white)';
+        backgroundColor = 'bg-moneed-gray-7';
+        textColor = 'text-moneed-white';
     } else if (type === 'action') {
-        backgroundColor = 'bg-(--moneed-blue-light)';
-        textColor = 'text-(--moneed-blue)';
-    } else if (type === 'cancel') {
-        backgroundColor = 'bg-(--moneed-red-light)';
-        textColor = 'text-(--moneed-red)';
+        backgroundColor = 'bg-moneed-blue-light';
+        textColor = 'text-moneed-blue';
+    } else if (type === 'caution') {
+        backgroundColor = 'bg-moneed-red-light';
+        textColor = 'text-moneed-red';
     }
 
     if (!portalRoot) return null;

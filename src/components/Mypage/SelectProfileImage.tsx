@@ -12,7 +12,7 @@ const SelectProfileImage = ({ onSelect }: SelectProfileImageProps) => {
                     key={index}
                     src={img}
                     alt={`Profile ${index + 1}`}
-                    className='w-24 h-24 object-cover rounded-full cursor-pointer border border-solid border-(--moneed-gray-4) hover:border-(--moneed-primary)'
+                    className='w-24 h-24 object-cover rounded-full cursor-pointer border border-solid border-moneed-gray-4 hover:border-moneed-brand'
                     onClick={() => onSelect(img)}
                 />
             ))}

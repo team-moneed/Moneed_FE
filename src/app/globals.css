@@ -2,12 +2,37 @@
 @source 'tailwind-scrollbar';
 @source 'tailwind-scrollbar-hide';
 @source '@tailwindcss/aspect-ratio';
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css');
 
 @theme {
     --shadow-custom: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     --bg-mask-gradient-right: linear-gradient(to left, transparent, #000 4.8rem);
     --snackbar-top: slideDown 0.5s ease-in-out;
     --snackbar-bottom: slideUp 0.5s ease-in-out;
+    --color-moneed-brand: #25c5ad;
+    --color-moneed-brand-point: #00ecc9;
+    --color-moneed-navy: #46467f;
+    --color-moneed-blue: #266df1;
+    --color-moneed-blue-light: #eef7ff;
+    --color-moneed-green: #1bcb1b;
+    --color-moneed-green-light: #f4fff5;
+    --color-moneed-red: #f60007;
+    --color-moneed-red-light: #ffeaf0;
+    --color-moneed-bred-light: #fff4f4;
+    --color-moneed-black: #171717;
+    --color-moneed-black-3: #f9fafc;
+    --color-moneed-shade-bg: #efeff3;
+    --color-moneed-gray-9: #454954;
+    --color-moneed-gray-8: #5e6167;
+    --color-moneed-gray-7: #86898f;
+    --color-moneed-gray-6: #bbbdc3;
+    --color-moneed-gray-5: #e4e6ea;
+    --color-moneed-gray-4: #f0f1f4;
+    --color-moneed-gray-3: #fbfbfb;
+    --color-moneed-gray-2: #fbfbfb;
+    --color-moneed-gray-1: #fdfdfe;
+    --color-moneed-white: #ffffff;
+    --container-7xl: calc(80rem * 1.6);
 }
 
 @utility mask-right {
@@ -15,35 +40,6 @@
     mask-image: linear-gradient(to left, transparent, #000 4.8rem);
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
-}
-
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-}
-
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 @keyframes slideDown {
@@ -68,23 +64,36 @@
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
-    }
-}
-
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
-}
-
 @layer base {
     button:not(:disabled),
     [role='button']:not(:disabled) {
         cursor: pointer;
+    }
+    body,
+    button,
+    select,
+    textarea,
+    input {
+        font-family:
+            'Pretendard Variable',
+            Pretendard,
+            -apple-system,
+            BlinkMacSystemFont,
+            system-ui,
+            Roboto,
+            'Helvetica Neue',
+            'Segoe UI',
+            'Apple SD Gothic Neo',
+            'Noto Sans KR',
+            'Malgun Gothic',
+            'Apple Color Emoji',
+            'Segoe UI Emoji',
+            'Segoe UI Symbol',
+            sans-serif;
+    }
+    body,
+    html {
+        min-height: 100vh;
+        font-size: 10px;
     }
 }

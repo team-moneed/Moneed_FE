@@ -111,7 +111,7 @@ const Post = ({ userName, content, isliked, postId, stocktype, postImages, likes
     return (
         <>
             <div
-                className={`relative border border-solid border-(--moneed-gray-5) rounded-[1.8rem] mb-[1.6rem] ${
+                className={`relative border border-solid border-moneed-gray-5 rounded-[1.8rem] mb-[1.6rem] ${
                     isDropdownOpen ? 'pointer-events-none' : ''
                 }`}
             >
@@ -126,10 +126,10 @@ const Post = ({ userName, content, isliked, postId, stocktype, postImages, likes
                             <div className='rounded-full overflow-hidden aspect-square w-[3.2rem]'>
                                 <img src='/temp/sample3.png' alt='' className='w-full h-full object-cover' />
                             </div>
-                            <span className='text-[1.4rem] font-normal leading-[140%] text-(--moneed-black)'>
+                            <span className='text-[1.4rem] font-normal leading-[140%] text-moneed-black'>
                                 {userName}
                             </span>
-                            <i className='w-[.2rem] h-[.2rem] rounded-full bg-(--moneed-gray-5)'></i>
+                            <i className='w-[.2rem] h-[.2rem] rounded-full bg-moneed-gray-5'></i>
                             <DateFormatter createdAt={createdAt} />
                         </div>
                         <div className='relative ml-auto shrink-0 z-2'>
@@ -144,10 +144,10 @@ const Post = ({ userName, content, isliked, postId, stocktype, postImages, likes
                             )}
                         </div>
                     </div>
-                    <p className='mt-[1.2rem] text-[1.6rem] font-bold leading-[135%] text-(--moneed-black) line-clamp-1'>
+                    <p className='mt-[1.2rem] text-[1.6rem] font-bold leading-[135%] text-moneed-black line-clamp-1'>
                         {title}
                     </p>
-                    <p className='mt-[.4rem] mb-[.8rem] text-[1.6rem] font-normal leading-[145%] text-(--moneed-gray-9) line-clamp-3'>
+                    <p className='mt-[.4rem] mb-[.8rem] text-[1.6rem] font-normal leading-[145%] text-moneed-gray-9 line-clamp-3'>
                         {content}
                     </p>
                     {postImages.length > 0 && (
@@ -168,13 +168,13 @@ const Post = ({ userName, content, isliked, postId, stocktype, postImages, likes
                             </button>
                         )}
                     </div>
-                    <span className='relative z-2 mr-4 text-[1.4rem] font-normal leading-[140%] text-(--moneed-gray-8)'>
+                    <span className='relative z-2 mr-4 text-[1.4rem] font-normal leading-[140%] text-moneed-gray-8'>
                         6
                     </span>
                     <div className=' relative z-2'>
                         <Icon iconUrl='/commentIcon.svg' width={20} height={20} />
                     </div>
-                    <span className='relative z-2 mr-4 text-[1.4rem] font-normal leading-[140%] text-(--moneed-gray-8)'>
+                    <span className='relative z-2 mr-4 text-[1.4rem] font-normal leading-[140%] text-moneed-gray-8'>
                         8{' '}
                     </span>
                     <div className=' relative z-2'>

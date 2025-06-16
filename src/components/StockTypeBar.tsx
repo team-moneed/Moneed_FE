@@ -1,8 +1,7 @@
 'use client';
 
 import Chip from '@/components/Chip';
-import { StockType } from '@/types/stock';
-import { useQuery } from '@tanstack/react-query';
+import { useStocks } from '@/hooks/useStocks';
 import { useParams, useRouter } from 'next/navigation';
 import Icon from './Icon';
 
@@ -10,18 +9,15 @@ const StockTypeBar = () => {
     //선택한 카테고리만 보이게
     const { stocktype } = useParams<{ stocktype?: string }>();
     const selectedStockType = stocktype === undefined ? '전체' : decodeURIComponent(stocktype);
-    const { data: stockTypes } = useQuery<StockType[]>({
-        queryKey: ['stockTypes'],
-        queryFn: () => fetch('/api/stocktypes').then(res => res.json()),
-    });
+    const { data: stocks } = useStocks();
 
     const router = useRouter();
     const movetoSelectStockType = () => {
-        router.push('/selectStockType');
+        router.push('/selectstocktype');
     };
 
-    const movetoStockType = (stocktype: string) => {
-        router.push(`/community/${stocktype}`);
+    const movetoStockType = (name: string) => {
+        router.push(`/community/${name}`);
     };
 
     const movetoAllStockType = () => {
@@ -40,13 +36,13 @@ const StockTypeBar = () => {
                     className='py-[12px] px-[24px]'
                     onClick={movetoAllStockType}
                 />
-                {stockTypes?.map(({ stocktype, StockTypeId }) => (
+                {stocks?.map(({ id, name }) => (
                     <Chip
-                        key={StockTypeId}
-                        label={stocktype}
-                        active={selectedStockType === stocktype}
+                        key={id}
+                        label={name}
+                        active={selectedStockType === name}
                         className='py-[12px] px-[24px]'
-                        onClick={() => movetoStockType(stocktype)}
+                        onClick={() => movetoStockType(name)}
                     />
                 ))}
             </div>

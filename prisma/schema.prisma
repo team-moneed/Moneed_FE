@@ -12,12 +12,80 @@ datasource db {
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Post {
   id         BigInt    @id @default(autoincrement())
-  created_at DateTime  @default(now()) @db.Timestamptz(6)
-  author_id  BigInt?
+  createdAt  DateTime  @default(now()) @db.Timestamptz(6)
+  authorId  BigInt?
   title      String?
   content    String?
-  updated_at DateTime? @default(now()) @db.Timestamp(6)
+  updatedAt DateTime? @default(now()) @db.Timestamp(6)
   views      BigInt?   @default(0)
   likes      BigInt?   @default(0)
-  stock_type String?
+  stockType String?
+
+  @@map("posts")
+}
+
+model User {
+    id               String   @id @default(cuid())
+    name             String
+    nickname         String
+    email            String   @unique
+    birthyear        String
+    birthday         String
+    profileImage     String
+    thumbnailImage   String
+    ageRange         String?
+    gender           String? // male, female
+    createdAt        DateTime  @default(now())
+    updatedAt        DateTime  @updatedAt
+    lastLoginAt      DateTime @default(now()) @updatedAt
+    role             Role @default(USER)
+    oauthAccounts    OAuthAccount[]
+    selectedStocks   SelectedStock[]
+
+    @@map("users")
+}
+
+model OAuthAccount {
+    id                String   @id @default(cuid())
+    provider          String // kakao, google, naver
+    providerUserId    String    // OAuth Provider의 사용자 ID
+    userId            String    // User 테이블의 ID
+    user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    connectedAt       DateTime  @default(now())
+    synchedAt         DateTime  @default(now())
+    createdAt         DateTime  @default(now())
+    updatedAt         DateTime  @updatedAt
+    accessToken       String
+    refreshToken      String
+    accessTokenExpiresIn DateTime
+    refreshTokenExpiresIn DateTime
+
+    @@unique([provider, providerUserId])
+    @@map("oauth_accounts")
+}
+
+model Stock {
+  id Int @id @default(autoincrement())
+  name String
+  thumbnailImage String
+  selectedStocks SelectedStock[]
+
+  @@map("stocks")
+}
+
+model SelectedStock {
+    id Int @id @default(autoincrement())
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String
+    stock Stock @relation(fields: [stockId], references: [id])
+    stockId Int
+
+    @@map("selected_stocks")
+    @@unique([userId, stockId])
+}
+
+
+enum Role {
+    ADMIN
+    USER
 }

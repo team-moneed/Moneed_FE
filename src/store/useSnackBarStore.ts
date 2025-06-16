@@ -1,17 +1,14 @@
 import { create } from 'zustand';
 
+export type SnackBarType = 'normal' | 'action' | 'caution';
+
 interface SnackBarState {
     message: string;
     icon?: string;
     position: 'top' | 'bottom';
-    type: 'normal' | 'action' | 'cancel';
+    type: SnackBarType;
     isVisible: boolean;
-    showSnackBar: (
-        message: string,
-        type: 'normal' | 'action' | 'cancel',
-        position: 'top' | 'bottom',
-        icon?: string,
-    ) => void;
+    showSnackBar: (message: string, type: SnackBarType, position: 'top' | 'bottom', icon?: string) => void;
     hideSnackBar: () => void;
 }
 

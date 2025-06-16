@@ -15,6 +15,7 @@ export default [
         rules: {
             'import/no-anonymous-default-export': 'off',
             '@next/next/no-img-element': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
         },
     }),
     {

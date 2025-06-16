@@ -55,13 +55,13 @@ const BottomModal = ({ imageSrc, title, description, ButtonText, onButtonClick, 
                     )}
 
                     {title && (
-                        <h2 className='text-[2.4rem] text-center text-(--moneed-black) font-bold leading-[140%]'>
+                        <h2 className='text-[2.4rem] text-center text-moneed-black font-bold leading-[140%]'>
                             {title}
                         </h2>
                     )}
 
                     {description && (
-                        <div className='text-[1.6rem] text-center text-(--moneed-black) font-semibold leading-[140%] mt-[3.8rem]'>
+                        <div className='text-[1.6rem] text-center text-moneed-black font-semibold leading-[140%] mt-[3.8rem]'>
                             {description}
                         </div>
                     )}

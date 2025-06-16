@@ -22,15 +22,13 @@ const Card = ({ cardImgages, title, content, date, children, className = '', onC
             ))}
 
             <div className='flex gap-[1.2rem] flex-col mt-[1.2rem]'>
-                {date && <p className='text-(--moneed-gray-7) text-[1.2rem] leading-[135%]'>{date}</p>}
+                {date && <p className='text-moneed-gray-7 text-[1.2rem] leading-[135%]'>{date}</p>}
                 {title && (
-                    <h3 className='text-[1.8rem] text-(--moneed-black) font-semibold leading-[135%] line-clamp-2'>
+                    <h3 className='text-[1.8rem] text-moneed-black font-semibold leading-[135%] line-clamp-2'>
                         {title}
                     </h3>
                 )}
-                {content && (
-                    <p className='text-(--moneed-gray-7) text-[1.4rem] leading-[142%] line-clamp-2'>{content}</p>
-                )}
+                {content && <p className='text-moneed-gray-7 text-[1.4rem] leading-[142%] line-clamp-2'>{content}</p>}
             </div>
 
             {children}
