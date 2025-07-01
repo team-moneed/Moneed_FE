@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import RandomNickname from './RandomNickname';
 
 export default function Welcome() {
     const router = useRouter();
@@ -17,7 +18,7 @@ export default function Welcome() {
         <>
             <div className='px-8 max-w-512 mx-auto'>
                 <div className='text-[2.4rem] text-moneed-black font-bold text-center mt-36 leading-[140%]'>
-                    랜덤닉네임님,
+                    <RandomNickname />
                     <br />
                     회원가입을 축하합니다.
                 </div>
