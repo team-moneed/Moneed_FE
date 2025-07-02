@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 type MyStockProps = {
     infoBoxImgages?: string[] | string;
     name?: string;
-    priceUSD?: string;
+    priceUSD?: number;
     rate?: string;
     children?: ReactNode;
     className?: string;
@@ -13,6 +13,13 @@ type MyStockProps = {
 };
 
 const MyStockBox = ({ name, children, onClick, isSelectCategory = false }: MyStockProps) => {
+    // TODO: 종목 영어이름, 가격, 등락률, 이미지 추가
+    const englishName = 'apple';
+    const priceUSD = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    }).format(504.99);
+    const rate = '16.3%';
     return (
         <>
             <div

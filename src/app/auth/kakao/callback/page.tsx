@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { loginWithKakao } from '@/api/auth.api';
+import { login } from '@/api/auth.api';
 import { useQuery } from '@tanstack/react-query';
 
 function KakaoCallback() {
@@ -20,7 +20,7 @@ function KakaoCallback() {
 
     const { data: token } = useQuery({
         queryKey: ['kakao', code, state],
-        queryFn: () => loginWithKakao({ code: code!, state: state }),
+        queryFn: () => login({ code: code!, state: state, provider: 'kakao' }),
         enabled: !!code,
     });
 
