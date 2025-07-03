@@ -1,5 +1,7 @@
 import { OAuthAccount } from '@/generated/prisma';
 import prisma from '@/lib/prisma';
+import { ProviderInfo } from '@/types/auth';
+import { Optional } from '@/types/util';
 
 export class ProviderRepository {
     private prisma = prisma;
@@ -17,6 +19,35 @@ export class ProviderRepository {
                 providerUserId: true,
                 accessToken: true,
             },
+        });
+    }
+
+    async delete(provider: string, providerUserId: string) {
+        return this.prisma.oAuthAccount.delete({
+            where: {
+                provider_providerUserId: {
+                    provider,
+                    providerUserId,
+                },
+            },
+        });
+    }
+
+    async updateTokenData(
+        provider: ProviderInfo,
+        tokenData: Optional<
+            Pick<OAuthAccount, 'accessToken' | 'refreshToken' | 'accessTokenExpiresIn' | 'refreshTokenExpiresIn'>,
+            'refreshToken' | 'refreshTokenExpiresIn'
+        >,
+    ) {
+        return this.prisma.oAuthAccount.update({
+            where: {
+                provider_providerUserId: {
+                    provider: provider.provider,
+                    providerUserId: provider.providerUserId,
+                },
+            },
+            data: tokenData,
         });
     }
 
@@ -84,6 +115,22 @@ export class ProviderRepository {
                         id: userId,
                     },
                 },
+            },
+        });
+    }
+
+    async getTokenExpiration(provider: string, accessToken: string) {
+        return this.prisma.oAuthAccount.findFirst({
+            where: {
+                provider,
+                accessToken,
+            },
+            select: {
+                accessToken: true,
+                refreshToken: true,
+                accessTokenExpiresIn: true,
+                refreshTokenExpiresIn: true,
+                providerUserId: true,
             },
         });
     }

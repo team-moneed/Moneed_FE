@@ -1,5 +1,7 @@
-import { KakaoTokenResponse, KakaoUserInfo } from '@/types/kakao';
+import 'server-only';
+import { KakaoRefreshTokenResponse, KakaoTokenResponse, KakaoUserInfo } from '@/types/kakao';
 import axios, { AxiosError } from 'axios';
+import { kakao } from './server';
 
 const kakaoTokenUrl = 'https://kauth.kakao.com/oauth/token';
 const kakaoUserInfoUrl = 'https://kapi.kakao.com/v2/user/me';
@@ -29,9 +31,27 @@ export const getKakaoToken = async (code: string) => {
     }
 };
 
+export const refreshKakaoToken = async (refreshToken: string) => {
+    const data = {
+        grant_type: 'refresh_token',
+        client_id: process.env.KAKAO_CLIENT_ID,
+        refresh_token: refreshToken,
+        client_secret: process.env.KAKAO_CLIENT_SECRET,
+    };
+
+    const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+    };
+
+    const res = await axios.post<KakaoRefreshTokenResponse>(kakaoTokenUrl, data, {
+        headers,
+    });
+    return res.data;
+};
+
 export const getKakaoUserInfo = async (accessToken: string) => {
     try {
-        const res = await axios.get<KakaoUserInfo>(kakaoUserInfoUrl, {
+        const res = await kakao.get<KakaoUserInfo>(kakaoUserInfoUrl, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
                 Authorization: `Bearer ${accessToken}`,
@@ -46,7 +66,7 @@ export const getKakaoUserInfo = async (accessToken: string) => {
 
 export const logoutKakao = async ({ accessToken, providerUserId }: { accessToken: string; providerUserId: string }) => {
     try {
-        const res = await axios.post(
+        const res = await kakao.post(
             kakaoLogoutUrl,
             {
                 target_id_type: 'user_id',

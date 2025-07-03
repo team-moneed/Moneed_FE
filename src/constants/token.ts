@@ -1,7 +1,7 @@
 // 토큰 만료 기간 (밀리초)
 export const TOKEN_EXPIRATION = {
-    ACCESS_TOKEN: 10 * 1000, // 7일(초)
-    REFRESH_TOKEN: 30 * 1000, // 30일(초)
+    ACCESS_TOKEN: 24 * 60 * 60 * 1000, // 24시간
+    REFRESH_TOKEN: 30 * 24 * 60 * 60 * 1000, // 30일
 } as const;
 
 export const TOKEN_ERROR = {

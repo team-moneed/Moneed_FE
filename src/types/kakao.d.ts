@@ -1,3 +1,5 @@
+import { Optional } from './util';
+
 export interface KakaoUserInfo {
     id: bigint;
     connected_at: string;
@@ -31,3 +33,5 @@ export interface KakaoTokenResponse {
     refresh_token_expires_in: number;
     id_token: string;
 }
+
+export type KakaoRefreshTokenResponse = Optional<KakaoTokenResponse, 'refresh_token' | 'refresh_token_expires_in'>;

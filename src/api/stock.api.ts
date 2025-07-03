@@ -1,4 +1,4 @@
-import { http } from '@/api/request';
+import { http } from '@/api/client';
 import { Stock } from '@/generated/prisma';
 import { SelectedStock } from '@/types/stock';
 

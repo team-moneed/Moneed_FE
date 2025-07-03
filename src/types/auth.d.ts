@@ -8,3 +8,8 @@ type DecodedToken = UserInfo & {
     iat: number;
     expiresAt: Date;
 };
+
+export type ProviderInfo = {
+    provider: string;
+    providerUserId: string;
+};
