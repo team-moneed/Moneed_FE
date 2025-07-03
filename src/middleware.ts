@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/session';
+import { REASON_CODES } from './constants/snackbar';
 
 const protectedRoutes = [
     '/mypage',
@@ -12,7 +13,7 @@ const protectedRoutes = [
     '/writepost',
 ];
 
-const guestOnlyRoutes = ['/onboarding', '/oauth2/callback/kakao'];
+const guestOnlyRoutes = ['/onboarding', '/auth/kakao/callback'];
 
 export async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
@@ -21,11 +22,11 @@ export async function middleware(req: NextRequest) {
     const session = await getSession();
 
     if (isGuestOnlyRoute && session?.userId) {
-        return NextResponse.redirect(new URL('/?reason=logged_in', req.nextUrl));
+        return NextResponse.redirect(new URL(`/?reason=${REASON_CODES.LOGGED_IN}`, req.nextUrl));
     }
 
     if (isProtectedRoute && !session?.userId) {
-        return NextResponse.redirect(new URL('/onboarding?reason=no_session', req.nextUrl));
+        return NextResponse.redirect(new URL(`/onboarding?reason=${REASON_CODES.NO_SESSION}`, req.nextUrl));
     }
 
     return NextResponse.next();

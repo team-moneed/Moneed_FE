@@ -3,13 +3,14 @@ import { useMutation } from '@tanstack/react-query';
 import { leave } from '@/api/auth.api';
 import { cn } from '@/util/style';
 import { useRouter } from 'next/navigation';
+import { REASON_CODES } from '@/constants/snackbar';
 
 export default function LeaveButton() {
     const router = useRouter();
     const { mutate: leaveKakao, isPending } = useMutation({
         mutationFn: () => leave({ provider: 'kakao' }),
         onSuccess: () => {
-            router.push('/?reason=leave');
+            router.push(`/?reason=${REASON_CODES.LEAVE}`);
         },
         onError: error => {
             console.error('탈퇴 오류:', error);

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { PrimaryDropdown, PrimaryDropdownProps } from '@/components/Dropdown';
 import { useModal } from '@/context/ModalContext';
-import useSnackBarStore from '@/store/useSnackBarStore';
+import useSnackbarStore from '@/store/useSnackbarStore';
 
 type CommentType = {
     userName: string;
@@ -15,7 +15,7 @@ type CommentType = {
 const Comment = ({ userName, content, createdAt, onEditComment }: CommentType) => {
     const [isDropdownOpen, setIsdropdownOpen] = useState(false);
 
-    const { showSnackBar } = useSnackBarStore();
+    const showSnackbar = useSnackbarStore(state => state.showSnackbar);
     const { confirm } = useModal();
 
     //댓글 수정/삭제 드롭다운
@@ -45,7 +45,12 @@ const Comment = ({ userName, content, createdAt, onEditComment }: CommentType) =
     //댓글 삭제 api 연동
     const handledeleteComment = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
-        showSnackBar('댓글이 삭제되었습니다.', 'action', 'bottom', '');
+        showSnackbar({
+            message: '댓글이 삭제되었습니다.',
+            variant: 'action',
+            position: 'bottom',
+            icon: '',
+        });
     };
 
     const closeDropdown = () => {

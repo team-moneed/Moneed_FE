@@ -1,7 +1,7 @@
 'use client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
-import useSnackBarStore from '@/store/useSnackBarStore';
+import useSnackbarStore from '@/store/useSnackbarStore';
 import ImageCarousel from '@/components/Carousel/ImageCarousel';
 import { useModal } from '@/context/ModalContext';
 import DateFormatter from '@/util/Dateformatter';
@@ -37,7 +37,7 @@ export default function PostDetailPage() {
 
     const [isDropdownOpen, setIsdropdownOpen] = useState(false);
 
-    const { showSnackBar } = useSnackBarStore();
+    const showSnackbar = useSnackbarStore(state => state.showSnackbar);
     const { confirm } = useModal();
 
     const router = useRouter();
@@ -92,12 +92,20 @@ export default function PostDetailPage() {
         setNewComment('');
         if (isEdit) {
             console.log(editContent, '댓글 수정!');
-            showSnackBar('댓글이 수정되었습니다.', 'action', 'bottom', '');
+            showSnackbar({
+                message: '댓글이 수정되었습니다.',
+                variant: 'action',
+                position: 'bottom',
+            });
             setEditContent('');
             setIsEdit(false);
         } else {
             console.log(newComment, '댓글 추가!');
-            showSnackBar('댓글이 작성되었습니다.', 'action', 'bottom', '');
+            showSnackbar({
+                message: '댓글이 작성되었습니다.',
+                variant: 'action',
+                position: 'bottom',
+            });
             setNewComment('');
         }
     };
@@ -127,7 +135,11 @@ export default function PostDetailPage() {
 
     //게시글 삭제 api 연동
     const handledeletePost = (e: React.MouseEvent<HTMLButtonElement>) => {
-        showSnackBar('게시글이 삭제되었습니다.', 'action', 'bottom', '');
+        showSnackbar({
+            message: '게시글이 삭제되었습니다.',
+            variant: 'action',
+            position: 'bottom',
+        });
         e.stopPropagation();
     };
 

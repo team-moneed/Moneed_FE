@@ -1,6 +1,9 @@
+import { SnackbarTrigger } from '@/components/Snackbar';
 import KakaoLoginButton from './KakaoLoginButton';
 
-export default function Onboarding() {
+export default async function Onboarding({ searchParams }: { searchParams: Promise<{ reason: string }> }) {
+    const reason = (await searchParams).reason;
+
     return (
         <>
             <div className="relative h-screen overflow-hidden px-[1.8rem] pt-8 bg-[url('/line-bg.png')] bg-size-[8rem_8rem] lg:bg-[url('/line-bg-pc.png')]">
@@ -27,6 +30,7 @@ export default function Onboarding() {
                     <img src='/onboarding-square2.svg' alt='' className='absolute right-[29.2rem] top-[64.6rem] w-88' />
                 </div>
             </div>
+            <SnackbarTrigger reason={reason} />
         </>
     );
 }

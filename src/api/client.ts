@@ -1,3 +1,4 @@
+import { REASON_CODES } from '@/constants/snackbar';
 import axios from 'axios';
 import { AxiosInstance, AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
@@ -26,7 +27,7 @@ const getMoneedInstance = (): AxiosInstance => {
         },
         async (error: AxiosError) => {
             if (error.response?.status === 401) {
-                window.location.href = '/onboarding?reason=expired_session';
+                window.location.href = `/onboarding?reason=${REASON_CODES.EXPIRED_SESSION}`;
                 console.error(error.response?.data);
                 return Promise.reject(error);
             }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import BottomModal from '@/components/BottomModal';
 import UploadImage from '@/components/UploadImage';
-import useSnackBarStore from '@/store/useSnackBarStore';
+import useSnackbarStore from '@/store/useSnackbarStore';
 import { useForm } from 'react-hook-form';
 import { useKeyboardOffset } from '@/hooks/useKeyboardOffset';
 import { redirect, useRouter, useSearchParams } from 'next/navigation';
@@ -29,8 +29,7 @@ const WritePost = () => {
     const content = watch('content', '');
     const title = watch('title', '');
 
-    const { showSnackBar } = useSnackBarStore();
-    useSnackBarStore();
+    const showSnackbar = useSnackbarStore(state => state.showSnackbar);
 
     const handleFileUpload = (formData: FormData) => {
         setFormImg(formData);
@@ -47,13 +46,23 @@ const WritePost = () => {
 
     useEffect(() => {
         if (title.trim().length >= 50) {
-            showSnackBar('제목은 공백 포함 50자 제한입니다.', 'normal', 'bottom', '/icon/icon-snackbar.svg');
+            showSnackbar({
+                message: '제목은 공백 포함 50자 제한입니다.',
+                variant: 'normal',
+                position: 'bottom',
+                icon: '/icon/icon-snackbar.svg',
+            });
         }
 
         if (content.trim().length >= 1000) {
-            showSnackBar('본문은 최대 1000자 입니다.', 'normal', 'bottom', '/icon/icon-snackbar.svg');
+            showSnackbar({
+                message: '본문은 최대 1000자 입니다.',
+                variant: 'normal',
+                position: 'bottom',
+                icon: '/icon/icon-snackbar.svg',
+            });
         }
-    }, [content, title, showSnackBar]);
+    }, [content, title, showSnackbar]);
 
     const movetoSearchStocktype = () => {
         router.push('/searchstocktype');
@@ -61,7 +70,12 @@ const WritePost = () => {
 
     const handleFocus = (field: string) => {
         if (!stocktype) {
-            showSnackBar('커뮤니티 종목을 먼저 선택해주세요.', 'normal', 'top', '/icon/icon-snackbar.svg');
+            showSnackbar({
+                message: '커뮤니티 종목을 먼저 선택해주세요.',
+                variant: 'normal',
+                position: 'top',
+                icon: '/icon/icon-snackbar.svg',
+            });
             return;
         }
 
@@ -76,17 +90,32 @@ const WritePost = () => {
         const formData = { ...data, stocktype };
 
         if (!stocktype) {
-            showSnackBar('커뮤니티 종목을 선택해주세요.', 'normal', 'bottom', '/icon/icon-snackbar.svg');
+            showSnackbar({
+                message: '커뮤니티 종목을 선택해주세요.',
+                variant: 'normal',
+                position: 'bottom',
+                icon: '/icon/icon-snackbar.svg',
+            });
             return;
         }
 
         if (!title.trim()) {
-            showSnackBar('제목을 입력해주세요.', 'normal', 'bottom', '/icon/icon-snackbar.svg');
+            showSnackbar({
+                message: '제목을 입력해주세요.',
+                variant: 'normal',
+                position: 'bottom',
+                icon: '/icon/icon-snackbar.svg',
+            });
             return;
         }
 
         if (content.trim().length == 0) {
-            showSnackBar('내용을 입력해주세요.', 'normal', 'bottom', '/icon/icon-snackbar.svg');
+            showSnackbar({
+                message: '내용을 입력해주세요.',
+                variant: 'normal',
+                position: 'bottom',
+                icon: '/icon/icon-snackbar.svg',
+            });
             return;
         }
 
@@ -95,7 +124,12 @@ const WritePost = () => {
             body: JSON.stringify(formData),
         });
 
-        showSnackBar('게시글이 작성되었습니다.', 'action', 'bottom', '');
+        showSnackbar({
+            message: '게시글이 작성되었습니다.',
+            variant: 'action',
+            position: 'bottom',
+            icon: '',
+        });
 
         if (res.redirected) redirect(res.url);
     };
