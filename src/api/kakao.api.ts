@@ -6,6 +6,7 @@ import { kakao } from './server';
 const kakaoTokenUrl = 'https://kauth.kakao.com/oauth/token';
 const kakaoUserInfoUrl = 'https://kapi.kakao.com/v2/user/me';
 const kakaoLogoutUrl = 'https://kapi.kakao.com/v1/user/logout';
+const kakaoLeaveUrl = 'https://kapi.kakao.com/v1/user/unlink';
 
 export const getKakaoToken = async (code: string) => {
     try {
@@ -82,6 +83,28 @@ export const logoutKakao = async ({ accessToken, providerUserId }: { accessToken
         return res.data;
     } catch (error) {
         console.error('Failed to logout with Kakao:', (error as AxiosError).response?.data);
+        throw error;
+    }
+};
+
+export const leaveKakao = async ({ accessToken, providerUserId }: { accessToken: string; providerUserId: string }) => {
+    try {
+        const res = await kakao.post<{ id: bigint }>(
+            kakaoLeaveUrl,
+            {
+                target_id_type: 'user_id',
+                target_id: BigInt(providerUserId),
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            },
+        );
+        return res.data;
+    } catch (error) {
+        console.error('Failed to leave with Kakao:', (error as AxiosError).response?.data);
         throw error;
     }
 };

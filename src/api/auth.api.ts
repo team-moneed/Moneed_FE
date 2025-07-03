@@ -23,3 +23,8 @@ export const logout = async ({ provider }: { provider: 'kakao' }) => {
     const res = await http.post(`/api/auth/${provider}/logout`);
     return res;
 };
+
+export const leave = async ({ provider }: { provider: 'kakao' }) => {
+    const res = await http.post<{ ok: boolean; reason?: string }>(`/api/auth/${provider}/leave`);
+    return res;
+};

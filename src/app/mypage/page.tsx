@@ -4,6 +4,7 @@ import MypageBox from '@/components/Mypage/MypageBox';
 import MyStockBox from '@/components/Mypage/MyStockBox';
 import { useSelectedStock } from '@/hooks/useSelectedStock';
 import LogoutButton from '@/app/mypage/LogoutButton';
+import LeaveButton from './LeaveButton';
 
 export default function Mypage() {
     const { data: selectedStocks } = useSelectedStock();
@@ -69,6 +70,8 @@ export default function Mypage() {
                     </div>
                     <div className='flex items-center sm:ml-auto sm:mr-0 ml-auto mr-auto gap-x-[1.6rem]'>
                         <LogoutButton />
+                        <i className='w-[.2rem] h-[1.6rem] bg-moneed-gray-5'></i>
+                        <LeaveButton />
                     </div>
                 </div>
             </div>
